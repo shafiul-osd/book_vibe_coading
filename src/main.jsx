@@ -8,6 +8,7 @@ import ListedBooks from './Components/ListedBooks/ListedBooks.jsx'
 import PagesToRead from './Components/PagesToRead/PagesToRead.jsx'
 import Contact from './Components/Contact/Contact.jsx'
 import About from './Components/About/About.jsx'
+import Bookdetiels from './Components/Bookdetiels/Bookdetiels.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='/pagestoread' element={<PagesToRead></PagesToRead>}></Route>
       <Route path='/contact' element={<Contact></Contact>}></Route>
       <Route path='/about' element={<About></About>}></Route>
+      <Route path='/book/:bookId' element={<Bookdetiels></Bookdetiels>}></Route>
 
       
       </Route>
