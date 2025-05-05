@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router";
 
 
 const Bookdetiels = () => {
 
     const{bookId}=useParams();
+
+    const navigate = useNavigate()
 
 
     const[book,setbook]=useState(null)
@@ -20,9 +23,43 @@ const Bookdetiels = () => {
             setbook(found)
         })
     },[bookId])
-    if(!book){
-        return <p className="text-center mt-10">Loading book.... Not Found</p>
-    }
+  
+    // deepseck theke implement korci aypart ta listedbook route a data add korar jonno
+
+    
+    const handleRead = () => {
+        if (!book) return;
+    
+        try {
+          const savedBooks = JSON.parse(localStorage.getItem('readingList')) || [];
+          
+          // চেক করুন বইটি আগে থেকে আছে কিনা
+          if (savedBooks.some(b => b.bookId === book.bookId)) {
+            toast.error("This book is already in your reading list");
+            return;
+          }
+          
+          // নতুন বইটি যোগ করুন
+          const updatedBooks = [...savedBooks, book];
+          localStorage.setItem('readingList', JSON.stringify(updatedBooks));
+          
+          toast.success("Book added to reading list!");
+          navigate("/pagestoread/listbook");
+        } catch (error) {
+          toast.error("Failed to save book");
+          console.error("Error saving to localStorage:", error);
+        }
+      };
+    
+      if (!book) {
+        return <p className="text-center mt-10">Loading book.... Not Found</p>;
+      }
+
+
+
+
+
+
 
     const{image,bookName,author,totalPages,tags,publisher,yearOfPublishing,rating,category,review}=book
 
@@ -48,7 +85,7 @@ const Bookdetiels = () => {
                 </div>
 
                 <div className="flex gap-4 items-center">
-                    <button className="border border-gray-200 p-2 bg-gray-300">Read</button>
+                    <button onClick={handleRead} className="border border-gray-200 p-2 bg-gray-300">Read</button>
                     <button className="bg-[#50B1C9] p-2 text-white">Wistlist</button>
                 </div>
             </div>

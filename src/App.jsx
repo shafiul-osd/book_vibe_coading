@@ -58,7 +58,7 @@ function App() {
      
      <Outlet></Outlet>
      <footer>
-
+            
      </footer>
     </>
   )
