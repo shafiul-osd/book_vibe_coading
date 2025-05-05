@@ -48,7 +48,7 @@ const Bookdetiels = () => {
                 </div>
 
                 <div className="flex gap-4 items-center">
-                    <button>Read</button>
+                    <button className="border border-gray-200 p-2 bg-gray-300">Read</button>
                     <button className="bg-[#50B1C9] p-2 text-white">Wistlist</button>
                 </div>
             </div>

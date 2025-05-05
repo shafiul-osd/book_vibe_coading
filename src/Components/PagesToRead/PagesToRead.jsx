@@ -1,9 +1,18 @@
-import React from 'react';
+import { Outlet } from "react-router";
+import { Link } from "react-router";
+
+
 
 const PagesToRead = () => {
     return (
-        <div>
-            <h2>this is the pagestoread component route</h2>
+        <div className="p-10">
+         <div className="flex gap-4 ">
+         <Link to={'listbook'}>Listbook</Link>
+         <Link to={'wishlistbook'}>Wishlistbook</Link>
+         </div>
+         <Outlet></Outlet>
+
+            
         </div>
     );
 };
